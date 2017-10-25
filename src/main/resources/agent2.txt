@@ -1,0 +1,7 @@
+<classe>
+  <nome>br.com.agent.Processamento</nome>
+  <metodo>
+    <nome>processar</nome>	
+	<codigo>System.out.println("Sou o novissimo Sem Parametros");</codigo>
+  </metodo>      
+</classe>

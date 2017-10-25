@@ -1,0 +1,8 @@
+<classe>
+  <nome>br.com.agent.Processamento</nome>
+  <metodo>
+    <nome>processar</nome>
+	<parametros>java.lang.String</parametros>
+	<codigo>System.out.println("Sou o novissimo processador " + $1);</codigo>
+  </metodo>      
+</classe>
