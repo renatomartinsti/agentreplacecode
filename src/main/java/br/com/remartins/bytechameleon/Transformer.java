@@ -1,5 +1,5 @@
 
-package br.com.remartins.agentreplacecode;
+package br.com.remartins.bytechameleon;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
-import br.com.remartins.agentreplacecode.xml.Classe;
+
+import br.com.remartins.bytechameleon.xml.Classe;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;

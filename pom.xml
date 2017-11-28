@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.remartins</groupId>
-	<artifactId>agentreplacecode</artifactId>
+	<artifactId>byte-chameleon</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
@@ -71,7 +71,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Premain-Class>br.com.remartins.agentreplacecode.Agent</Premain-Class>
+										<Premain-Class>br.com.remartins.bytechameleon.Agent</Premain-Class>
 										<Can-Redefine-Classes>true</Can-Redefine-Classes>
 										<Can-Retransform-Classes>true</Can-Retransform-Classes>
 									</manifestEntries>

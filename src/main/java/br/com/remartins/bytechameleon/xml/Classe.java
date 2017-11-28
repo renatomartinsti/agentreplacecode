@@ -1,5 +1,5 @@
 
-package br.com.remartins.agentreplacecode.xml;
+package br.com.remartins.bytechameleon.xml;
 
 import javax.xml.bind.annotation.XmlTransient;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
