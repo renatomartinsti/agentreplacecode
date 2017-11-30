@@ -6,15 +6,19 @@ import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 
+import br.com.remartins.bytechameleon.xml.ByteChameleon;
 import br.com.remartins.bytechameleon.xml.Classe;
+import br.com.remartins.bytechameleon.xml.Metodo;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.LoaderClassPath;
+import javassist.NotFoundException;
 
 /**
  * 
@@ -28,12 +32,14 @@ public class Transformer implements ClassFileTransformer {
 
 	private Map<String, Classe> mapClasse;
 
-	public Transformer(List<Classe> list) {
+	public Transformer(List<ByteChameleon> list) {
 
 		this.mapClasse = new HashMap<String, Classe>();
 
-		for (Classe c : list) {
-			mapClasse.put(c.getNome(), c);
+		for (ByteChameleon bc : list) {
+			for (Classe c : bc.getClasses()) {
+				mapClasse.put(c.getNome(), c);
+			}
 		}
 	}
 
@@ -47,16 +53,13 @@ public class Transformer implements ClassFileTransformer {
 		ClassPool cp = ClassPool.getDefault();
 		cp.appendClassPath(new LoaderClassPath(loader));
 
-		if (this.mapClasse.containsKey(classNameFinal)) {
-			Classe classe = this.mapClasse.get(classNameFinal);
-			classe.setInstrumentalizado(true);
-			retorno = instrumentaliza(cp, classNameFinal, retorno, classe);
-		}
-
-		for (Classe cls : this.mapClasse.values()) {
-			if (!cls.isInstrumentalizado()) {
-				cls.setInstrumentalizado(true);
-				instrumentaliza(cp, cls.getNome(), retorno, cls);
+		Iterator<String> iterator = this.mapClasse.keySet().iterator();
+		while (iterator.hasNext()) {
+			String classNameParam = iterator.next();
+			if (classNameFinal.equals(classNameParam)) {
+				Classe classe = this.mapClasse.get(classNameFinal);
+				this.mapClasse.remove(classNameParam);
+				return instrumentaliza(cp, classNameFinal, retorno, classe);
 			}
 		}
 
@@ -66,30 +69,45 @@ public class Transformer implements ClassFileTransformer {
 	private byte[] instrumentaliza(ClassPool cp, String classNameFinal, byte[] retorno, Classe classe) {
 		try {
 			CtClass cc = cp.get(classNameFinal);
-			CtMethod m = null;
+			CtMethod ctMethod = null;
 
-			if (classe.getMetodo().getParametros() != null) {
+			for (Metodo metodo : classe.getMetodos()) {
 
-				List<CtClass> listCtClass = new ArrayList<CtClass>();
+				if (metodo.getParametros() != null) {
 
-				for (String parametro : classe.getMetodo().getParametros().split(",")) {
-					listCtClass.add(cp.get(parametro.replace(" ", "")));
+					ctMethod = getMethodWithParams(cp, cc, metodo);
+				} else {
+					ctMethod = getMethod(cc, metodo);
 				}
-				CtClass[] arrays = new CtClass[listCtClass.size()];
-				listCtClass.toArray(arrays);
 
-				m = cc.getDeclaredMethod(classe.getMetodo().getNome(), arrays);
-			} else {
-				m = cc.getDeclaredMethod(classe.getMetodo().getNome());
+				ctMethod.setBody(metodo.getCodigo());
+
+				retorno = cc.toBytecode();
 			}
-
-			m.setBody(classe.getMetodo().getCodigo());
-
-			retorno = cc.toBytecode();
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}
 		return retorno;
+	}
+
+	private CtMethod getMethod(CtClass cc, Metodo metodo) throws NotFoundException {
+		return cc.getDeclaredMethod(metodo.getNome());
+	}
+
+	private CtMethod getMethodWithParams(ClassPool cp, CtClass cc, Metodo metodo) throws NotFoundException {
+		CtMethod m;
+		List<CtClass> listCtClass = new ArrayList<CtClass>();
+
+		/** create a array with params like get method form reflection **/
+		for (String parametro : metodo.getParametros().split(",")) {
+			listCtClass.add(cp.get(parametro.replace(" ", "")));
+		}
+
+		CtClass[] arrays = new CtClass[listCtClass.size()];
+		listCtClass.toArray(arrays);
+
+		m = cc.getDeclaredMethod(metodo.getNome(), arrays);
+		return m;
 	}
 
 }

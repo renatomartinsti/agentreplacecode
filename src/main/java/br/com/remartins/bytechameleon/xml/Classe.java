@@ -1,47 +1,42 @@
 
 package br.com.remartins.bytechameleon.xml;
 
-import javax.xml.bind.annotation.XmlTransient;
+import java.util.List;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
-@XStreamAlias("Classe")
-public class Classe
-{
+@XStreamAlias("classe")
+public class Classe {
 
-   @XmlTransient
-   private boolean instrumentalizado = false;
+	@XStreamOmitField
+	private boolean instrumentalizado = false;
 
-   private String nome;
-   private Metodo metodo;
+	private String nome;
+	private List<Metodo> metodos;
 
-   public boolean isInstrumentalizado()
-   {
-      return instrumentalizado;
-   }
+	public boolean isInstrumentalizado() {
+		return instrumentalizado;
+	}
 
-   public void setInstrumentalizado(boolean instrumentalizado)
-   {
-      this.instrumentalizado = instrumentalizado;
-   }
+	public void setInstrumentalizado(boolean instrumentalizado) {
+		this.instrumentalizado = instrumentalizado;
+	}
 
-   public String getNome()
-   {
-      return nome;
-   }
+	public String getNome() {
+		return nome;
+	}
 
-   public void setNome(String nome)
-   {
-      this.nome = nome;
-   }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-   public Metodo getMetodo()
-   {
-      return metodo;
-   }
+	public List<Metodo> getMetodos() {
+		return metodos;
+	}
 
-   public void setMetodo(Metodo metodo)
-   {
-      this.metodo = metodo;
-   }
+	public void setMetodos(List<Metodo> metodos) {
+		this.metodos = metodos;
+	}
 
 }

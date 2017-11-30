@@ -4,10 +4,12 @@ import java.io.File;
 import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.log4j.Logger;
+
 import com.thoughtworks.xstream.XStream;
 
-import br.com.remartins.bytechameleon.xml.Classe;
+import br.com.remartins.bytechameleon.xml.ByteChameleon;
 
 /**
  * 
@@ -17,32 +19,31 @@ import br.com.remartins.bytechameleon.xml.Classe;
  */
 public class Agent {
 
-   private static final Logger LOGGER = Logger.getLogger(Agent.class);
+	private static final Logger LOGGER = Logger.getLogger(Agent.class);
 
-	public static void premain(String agentArguments,
-			Instrumentation instrumentation) {
+	public static void premain(String agentArguments, Instrumentation instrumentation) {
 
-		List<Classe> listConfig = carregarArgumentos(agentArguments);
-		
-      LOGGER.debug("--- INICIANDO A INSTRUMENTA플O ---");
-		
+		List<ByteChameleon> listConfig = carregarArgumentos(agentArguments);
+
+		LOGGER.debug("--- INICIANDO A INSTRUMENTA플O ---");
+
 		instrumentation.addTransformer(new Transformer(listConfig));
 
-      LOGGER.debug("--- FINALIZADO A INSTRUMENTA플O ---");
+		LOGGER.debug("--- FINALIZADO A INSTRUMENTA플O ---");
 	}
 
-	private static List<Classe> carregarArgumentos(String agentArguments) {
+	private static List<ByteChameleon> carregarArgumentos(String agentArguments) {
 		XStream xStream = new XStream();
-		xStream.alias("classe", Classe.class);
-		
+		xStream.processAnnotations(ByteChameleon.class);
+
 		String[] files = agentArguments.split(",");
-		List<Classe> list = new ArrayList<Classe>();
-		
+		List<ByteChameleon> list = new ArrayList<ByteChameleon>();
+
 		for (String file : files) {
-			list.add((Classe) xStream.fromXML(new File(file.replace(" ", ""))));
+			list.add((ByteChameleon) xStream.fromXML(new File(file.replace(" ", ""))));
 		}
-		
+
 		return list;
 	}
-	
+
 }

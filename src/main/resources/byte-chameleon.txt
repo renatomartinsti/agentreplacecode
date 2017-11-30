@@ -1,0 +1,24 @@
+<byte-chameleon>
+  <classes>
+    <classe>
+      <nome>br.com.agent.Processamento</nome>
+      <metodos>
+        <metodo tipo="replace">
+          <nome>processar</nome>
+          <parametros>java.lang.String</parametros>
+          <codigo>System.out.println("Sou o novissimo processador " + $1);</codigo>
+        </metodo>
+      </metodos>
+    </classe>
+    <classe>
+      <nome>br.com.agent.Processamento2</nome>
+      <metodos>
+        <metodo>
+          <nome>processar</nome>
+          <parametros>java.lang.String</parametros>
+          <codigo>System.out.println("Sou o novissimo processador " + $1);</codigo>
+        </metodo>
+      </metodos>
+    </classe>    
+  </classes>	
+</byte-chameleon>  

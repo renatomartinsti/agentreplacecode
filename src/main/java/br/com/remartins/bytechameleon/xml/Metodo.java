@@ -1,10 +1,17 @@
 package br.com.remartins.bytechameleon.xml;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
+@XStreamAlias("metodo")
 public class Metodo {
 
 	private String nome;
 	private String parametros;
 	private String codigo;
+	
+	@XStreamAsAttribute
+	private String tipo;
 
 	public String getNome() {
 		return nome;
@@ -30,4 +37,22 @@ public class Metodo {
 		this.codigo = codigo;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getNome());
+		sb.append(" : ");
+		sb.append(getTipo());
+		return sb.toString();
+	}
+
+	
 }
