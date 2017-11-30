@@ -25,11 +25,11 @@ public class Agent {
 
 		List<ByteChameleon> listConfig = carregarArgumentos(agentArguments);
 
-		LOGGER.debug("--- INICIANDO A INSTRUMENTAÇÃO ---");
+		LOGGER.debug("--- START INSTRUMENTATION ---");
 
 		instrumentation.addTransformer(new Transformer(listConfig));
 
-		LOGGER.debug("--- FINALIZADO A INSTRUMENTAÇÃO ---");
+		LOGGER.debug("--- STOP INSTRUMENTATION ---");
 	}
 
 	private static List<ByteChameleon> carregarArgumentos(String agentArguments) {
