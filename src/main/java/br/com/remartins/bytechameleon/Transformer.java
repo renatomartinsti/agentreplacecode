@@ -80,10 +80,17 @@ public class Transformer implements ClassFileTransformer {
 					ctMethod = getMethod(cc, metodo);
 				}
 
-				ctMethod.setBody(metodo.getCodigo());
-
-				retorno = cc.toBytecode();
+				if (metodo.getTipo() == null || metodo.getTipo().trim().toLowerCase().equals("replace")) {
+					ctMethod.setBody(metodo.getCodigo());
+				} else if (metodo.getTipo().trim().toLowerCase().equals("before")) {
+					ctMethod.insertBefore(metodo.getCodigo());
+				} else if (metodo.getTipo().trim().toLowerCase().equals("after")) {
+					ctMethod.insertAfter(metodo.getCodigo());
+				}
 			}
+
+			retorno = cc.toBytecode();
+
 		} catch (Exception e) {
 			LOGGER.error(e);
 		}

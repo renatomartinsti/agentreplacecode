@@ -11,14 +11,14 @@
       </metodos>
     </classe>
     <classe>
-      <nome>br.com.agent.Processamento2</nome>
+      <nome>br.com.agent.Processamento</nome>
       <metodos>
-        <metodo>
+		<metodo tipo="before">
           <nome>processar</nome>
           <parametros>java.lang.String</parametros>
-          <codigo>System.out.println("Sou o novissimo processador " + $1);</codigo>
+          <codigo>System.out.println("Printer before !!!");</codigo>
         </metodo>
       </metodos>
-    </classe>    
+    </classe>     
   </classes>	
 </byte-chameleon>  
