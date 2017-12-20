@@ -12,7 +12,7 @@ Add to params
 ```
 -javaagent:byte-chameleon.jar=agent.xml
 ```
-where agent.xml is
+where <b>agent.xml</b> is
 
 ```
 <byte-chameleon>
@@ -30,7 +30,7 @@ where agent.xml is
     <classe>
       <nome>br.com.agent.Processamento</nome>
       <metodos>
-		<metodo tipo="before">
+          <metodo tipo="before">
           <nome>processar</nome>
           <parametros>java.lang.String</parametros>
           <codigo>System.out.println("Printer before !!!");</codigo>
