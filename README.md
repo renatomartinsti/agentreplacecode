@@ -2,3 +2,13 @@ Byte Chameleon [![Build Status](https://travis-ci.org/renatomartinsti/byte-chame
 ============
 
 JavaAgent Replace Methods with Javassist
+
+
+How To
+------
+
+Add to params
+
+```
+-javaagent:byte-chameleon.jar=agent.xml
+```
