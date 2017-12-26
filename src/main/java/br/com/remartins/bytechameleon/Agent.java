@@ -27,11 +27,11 @@ public class Agent {
 
 	public static void premain(String agentArguments, Instrumentation instrumentation) {
 
-		List<ByteChameleon> listConfig = carregarArgumentos(agentArguments);
+		List<ByteChameleon> descriptors = carregarArgumentos(agentArguments);
 
 		LOGGER.debug("--- START INSTRUMENTATION ---");
 
-		instrumentation.addTransformer(new Transformer(listConfig));
+		instrumentation.addTransformer(new Transformer(descriptors));
 
 		LOGGER.debug("--- STOP INSTRUMENTATION ---");
 	}

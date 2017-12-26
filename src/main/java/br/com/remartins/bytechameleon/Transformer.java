@@ -3,12 +3,15 @@ package br.com.remartins.bytechameleon;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
+import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+
 import org.apache.log4j.Logger;
 
 import br.com.remartins.bytechameleon.xml.ByteChameleon;
@@ -42,11 +45,13 @@ public class Transformer implements ClassFileTransformer {
 			}
 		}
 	}
+	
+
 
 	@Override
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-
+		
 		String classNameFinal = className.replace('/', '.');
 		byte[] retorno = classfileBuffer;
 
@@ -69,6 +74,9 @@ public class Transformer implements ClassFileTransformer {
 	private byte[] instrumentaliza(ClassPool cp, String classNameFinal, byte[] retorno, Classe classe) {
 		try {
 			CtClass cc = cp.get(classNameFinal);
+			if (cc.isFrozen()) {
+				cc.defrost();
+			}
 			CtMethod ctMethod = null;
 
 			for (Metodo metodo : classe.getMetodos()) {
@@ -89,6 +97,8 @@ public class Transformer implements ClassFileTransformer {
 				}
 			}
 
+			cc.detach();
+			
 			retorno = cc.toBytecode();
 
 		} catch (Exception e) {
