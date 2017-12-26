@@ -43,28 +43,28 @@ public class XStreamSample {
 		return byteChameleon;
 	}
 
-	private List<Classe> getClasses() {
-		List<Classe> classes = new ArrayList<Classe>();
+	private List<Clazz> getClasses() {
+		List<Clazz> classes = new ArrayList<Clazz>();
 
 		for (int i = 0; i < 5; i++) {
-			Classe clazz = new Classe();
-			clazz.setNome("Class" + i);
-			clazz.setMetodos(getMetodos());
+			Clazz clazz = new Clazz();
+			clazz.setName("Class" + i);
+			clazz.setMethods(getMetodos());
 			classes.add(clazz);
 		}
 
 		return classes;
 	}
 
-	private List<Metodo> getMetodos() {
-		List<Metodo> metodos = new ArrayList<Metodo>();
+	private List<Method> getMetodos() {
+		List<Method> metodos = new ArrayList<Method>();
 
 		for (int i = 0; i < 3; i++) {
-			Metodo method = new Metodo();
-			method.setCodigo("System.out.println(\"Sou o novissimo Sem Parametros\");");
-			method.setNome("methodProcess" + i);
-			method.setParametros("java.lang.String, java.lang.Integer");
-			method.setTipo("replace");
+			Method method = new Method();
+			method.setCode("System.out.println(\"Sou o novissimo Sem Parametros\");");
+			method.setName("methodProcess" + i);
+			method.setParams("java.lang.String, java.lang.Integer");
+			method.setType("replace");
 		}
 
 		return metodos;

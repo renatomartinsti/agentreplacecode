@@ -3,20 +3,19 @@ package br.com.remartins.bytechameleon;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
-import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import org.apache.log4j.Logger;
 
 import br.com.remartins.bytechameleon.xml.ByteChameleon;
-import br.com.remartins.bytechameleon.xml.Classe;
-import br.com.remartins.bytechameleon.xml.Metodo;
+import br.com.remartins.bytechameleon.xml.Clazz;
+import br.com.remartins.bytechameleon.xml.Method;
+
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -33,25 +32,23 @@ public class Transformer implements ClassFileTransformer {
 
 	private static final Logger LOGGER = Logger.getLogger(Transformer.class);
 
-	private Map<String, Classe> mapClasse;
+	private Map<String, Clazz> mapClasse;
 
 	public Transformer(List<ByteChameleon> list) {
 
-		this.mapClasse = new HashMap<String, Classe>();
+		this.mapClasse = new HashMap<String, Clazz>();
 
 		for (ByteChameleon bc : list) {
-			for (Classe c : bc.getClasses()) {
-				mapClasse.put(c.getNome(), c);
+			for (Clazz c : bc.getClasses()) {
+				mapClasse.put(c.getName(), c);
 			}
 		}
 	}
-	
-
 
 	@Override
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-		
+
 		String classNameFinal = className.replace('/', '.');
 		byte[] retorno = classfileBuffer;
 
@@ -62,16 +59,16 @@ public class Transformer implements ClassFileTransformer {
 		while (iterator.hasNext()) {
 			String classNameParam = iterator.next();
 			if (classNameFinal.equals(classNameParam)) {
-				Classe classe = this.mapClasse.get(classNameFinal);
+				Clazz classe = this.mapClasse.get(classNameFinal);
 				this.mapClasse.remove(classNameParam);
-				return instrumentaliza(cp, classNameFinal, retorno, classe);
+				return instrumentalize(cp, classNameFinal, retorno, classe);
 			}
 		}
 
 		return retorno;
 	}
 
-	private byte[] instrumentaliza(ClassPool cp, String classNameFinal, byte[] retorno, Classe classe) {
+	private byte[] instrumentalize(ClassPool cp, String classNameFinal, byte[] retorno, Clazz classe) {
 		try {
 			CtClass cc = cp.get(classNameFinal);
 			if (cc.isFrozen()) {
@@ -79,26 +76,26 @@ public class Transformer implements ClassFileTransformer {
 			}
 			CtMethod ctMethod = null;
 
-			for (Metodo metodo : classe.getMetodos()) {
+			for (Method metodo : classe.getMethods()) {
 
-				if (metodo.getParametros() != null) {
+				if (metodo.getParams() != null) {
 
 					ctMethod = getMethodWithParams(cp, cc, metodo);
 				} else {
 					ctMethod = getMethod(cc, metodo);
 				}
 
-				if (metodo.getTipo() == null || metodo.getTipo().trim().equalsIgnoreCase("replace")) {
-					ctMethod.setBody(metodo.getCodigo());
-				} else if (metodo.getTipo().trim().equalsIgnoreCase("before")) {
-					ctMethod.insertBefore(metodo.getCodigo());
-				} else if (metodo.getTipo().trim().equalsIgnoreCase("after")) {
-					ctMethod.insertAfter(metodo.getCodigo());
+				if (metodo.getType() == null || metodo.getType().trim().equalsIgnoreCase("replace")) {
+					ctMethod.setBody(metodo.getCode());
+				} else if (metodo.getType().trim().equalsIgnoreCase("before")) {
+					ctMethod.insertBefore(metodo.getCode());
+				} else if (metodo.getType().trim().equalsIgnoreCase("after")) {
+					ctMethod.insertAfter(metodo.getCode());
 				}
 			}
 
 			cc.detach();
-			
+
 			retorno = cc.toBytecode();
 
 		} catch (Exception e) {
@@ -107,23 +104,23 @@ public class Transformer implements ClassFileTransformer {
 		return retorno;
 	}
 
-	private CtMethod getMethod(CtClass cc, Metodo metodo) throws NotFoundException {
-		return cc.getDeclaredMethod(metodo.getNome());
+	private CtMethod getMethod(CtClass cc, Method metodo) throws NotFoundException {
+		return cc.getDeclaredMethod(metodo.getName());
 	}
 
-	private CtMethod getMethodWithParams(ClassPool cp, CtClass cc, Metodo metodo) throws NotFoundException {
+	private CtMethod getMethodWithParams(ClassPool cp, CtClass cc, Method metodo) throws NotFoundException {
 		CtMethod m;
 		List<CtClass> listCtClass = new ArrayList<CtClass>();
 
 		/** create a array with params like get method form reflection **/
-		for (String parametro : metodo.getParametros().split(",")) {
+		for (String parametro : metodo.getParams().split(",")) {
 			listCtClass.add(cp.get(parametro.replace(" ", "")));
 		}
 
 		CtClass[] arrays = new CtClass[listCtClass.size()];
 		listCtClass.toArray(arrays);
 
-		m = cc.getDeclaredMethod(metodo.getNome(), arrays);
+		m = cc.getDeclaredMethod(metodo.getName(), arrays);
 		return m;
 	}
 

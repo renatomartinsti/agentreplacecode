@@ -27,7 +27,7 @@ public class Agent {
 
 	public static void premain(String agentArguments, Instrumentation instrumentation) {
 
-		List<ByteChameleon> descriptors = carregarArgumentos(agentArguments);
+		List<ByteChameleon> descriptors = loadArgs(agentArguments);
 
 		LOGGER.debug("--- START INSTRUMENTATION ---");
 
@@ -36,7 +36,7 @@ public class Agent {
 		LOGGER.debug("--- STOP INSTRUMENTATION ---");
 	}
 
-	private static List<ByteChameleon> carregarArgumentos(String agentArguments) {
+	private static List<ByteChameleon> loadArgs(String agentArguments) {
 		XStream xStream = new XStream();
 		xStream.processAnnotations(ByteChameleon.class);
 

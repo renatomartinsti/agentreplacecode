@@ -6,8 +6,5 @@ public class Calc {
 		return value1 + value2;
 	}
 	
-	public void test() {
-		System.out.println("teste padrão.");
-	}
 	
 }

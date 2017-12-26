@@ -7,13 +7,13 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 @XStreamAlias("byte-chameleon")
 public class ByteChameleon {
 
-	private List<Classe> classes;
+	private List<Clazz> classes;
 
-	public List<Classe> getClasses() {
+	public List<Clazz> getClasses() {
 		return classes;
 	}
 
-	public void setClasses(List<Classe> classes) {
+	public void setClasses(List<Clazz> classes) {
 		this.classes = classes;
 	}
 
@@ -21,11 +21,11 @@ public class ByteChameleon {
 	public String toString() {
 		
 		StringBuilder sb = new StringBuilder();
-		for (Classe classe : this.classes) {
+		for (Clazz classe : this.classes) {
 			sb.append("\n");
-			sb.append(classe.getNome());
+			sb.append(classe.getName());
 			sb.append("\n");
-			for (Metodo metodo : classe.getMetodos()) {
+			for (Method metodo : classe.getMethods()) {
 				sb.append("  ").append(metodo).append("\n");	
 			}
 		}
