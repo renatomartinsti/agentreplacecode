@@ -3,22 +3,16 @@ package br.com.remartins.bytechameleon;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import br.com.remartins.bytechameleon.xml.ByteChameleon;
 import br.com.remartins.bytechameleon.xml.Classe;
 import br.com.remartins.bytechameleon.xml.Metodo;
-import javassist.ByteArrayClassPath;
-import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.CtClass;
-import javassist.NotFoundException;
 
 public class AgentTest {
 	
@@ -63,11 +57,5 @@ public class AgentTest {
 		}
 	}
 
-//	private byte[] getClassfileBuffer() throws NotFoundException, IOException, CannotCompileException {
-//		ClassPool pool = ClassPool.getDefault();
-//		CtClass cc = pool.get(Calc.class.getName());
-//		
-//		return cc.toBytecode();
-//	}
 
 }
