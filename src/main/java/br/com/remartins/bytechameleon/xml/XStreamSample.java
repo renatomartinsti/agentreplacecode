@@ -16,7 +16,7 @@ public class XStreamSample {
 
 		XStreamSample sample = new XStreamSample();
 
-		//sample.readXml();
+		sample.readXml();
 
 		sample.writeXml();
 
