@@ -35,9 +35,12 @@ public class Transformer implements ClassFileTransformer {
 	private Map<String, Clazz> mapClasse;
 
 	public Transformer(List<ByteChameleon> list) {
-
 		this.mapClasse = new HashMap<String, Clazz>();
 
+		populateMapDescriptions(list);
+	}
+
+	private void populateMapDescriptions(List<ByteChameleon> list) {
 		for (ByteChameleon bc : list) {
 			for (Clazz c : bc.getClasses()) {
 				mapClasse.put(c.getName(), c);
@@ -51,7 +54,6 @@ public class Transformer implements ClassFileTransformer {
 
 		String classNameFinal = className.replace('/', '.');
 		byte[] retorno = classfileBuffer;
-		
 
 		ClassPool cp = ClassPool.getDefault();
 		cp.appendClassPath(new LoaderClassPath(loader));

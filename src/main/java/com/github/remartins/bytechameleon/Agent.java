@@ -22,10 +22,6 @@ public class Agent {
 
 	private static final Logger LOGGER = Logger.getLogger(Agent.class);
 
-	private Agent() {
-		super();
-	}
-
 	public static void premain(String agentArguments, Instrumentation instrumentation) {
 		instrumentation(agentArguments, instrumentation);
 	}
