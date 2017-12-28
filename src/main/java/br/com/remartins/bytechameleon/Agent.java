@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import com.thoughtworks.xstream.XStream;
 
 import br.com.remartins.bytechameleon.xml.ByteChameleon;
+import br.com.remartins.bytechameleon.xml.Clazz;
+import br.com.remartins.bytechameleon.xml.Method;
 
 /**
  * 
@@ -35,9 +37,25 @@ public class Agent {
 
 		LOGGER.debug("--- STOP INSTRUMENTATION ---");
 	}
+	
+	
+	public static void agentmain(String agentArguments, Instrumentation instrumentation) {
+		List<ByteChameleon> descriptors = loadArgs(agentArguments);
+
+		LOGGER.debug("--- START INSTRUMENTATION ---");
+
+		instrumentation.addTransformer(new Transformer(descriptors));
+
+		LOGGER.debug("--- STOP INSTRUMENTATION ---");
+    }
 
 	private static List<ByteChameleon> loadArgs(String agentArguments) {
 		XStream xStream = new XStream();
+		
+		Class<?>[] classes = new Class[] { ByteChameleon.class, Clazz.class, Method.class };
+		XStream.setupDefaultSecurity(xStream);
+		xStream.allowTypes(classes);
+		
 		xStream.processAnnotations(ByteChameleon.class);
 
 		String[] files = agentArguments.split(",");

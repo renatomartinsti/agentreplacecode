@@ -49,8 +49,11 @@ public class Transformer implements ClassFileTransformer {
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
+		
+		
 		String classNameFinal = className.replace('/', '.');
 		byte[] retorno = classfileBuffer;
+		
 
 		ClassPool cp = ClassPool.getDefault();
 		cp.appendClassPath(new LoaderClassPath(loader));

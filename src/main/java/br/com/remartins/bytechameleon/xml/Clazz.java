@@ -13,6 +13,8 @@ public class Clazz {
 	private boolean instrumentalized = false;
 
 	private String name;
+	
+	@XStreamAlias("methods")
 	private List<Method> method;
 
 	public boolean isInstrumentalized() {

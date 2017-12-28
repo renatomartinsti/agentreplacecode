@@ -11,6 +11,13 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.4.2</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/../lib/tools.jar</systemPath>
+		</dependency>
+		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
 			<version>3.22.0-GA</version>
@@ -35,14 +42,6 @@
 			<groupId>com.ea.agentloader</groupId>
 			<artifactId>ea-agent-loader</artifactId>
 			<version>1.0.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sun</groupId>
-			<artifactId>tools</artifactId>
-			<version>1.4.2</version>
-			<scope>system</scope>
-			<systemPath>${java.home}/../lib/tools.jar</systemPath>
 		</dependency>
 	</dependencies>
 
@@ -103,7 +102,90 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-dependency-plugin</artifactId> -->
+			<!-- <version>3.0.2</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>copy-agent</id> -->
+			<!-- <phase>process-test-classes</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>copy</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <artifactItems> -->
+			<!-- <artifactItem> -->
+			<!-- <groupId>${project.groupId}</groupId> -->
+			<!-- <artifactId>${project.artifactId}</artifactId> -->
+			<!-- <version>${project.version}</version> -->
+			<!-- <outputDirectory>${project.build.directory}</outputDirectory> -->
+			<!-- <destFileName>agent.jar</destFileName> -->
+			<!-- </artifactItem> -->
+			<!-- </artifactItems> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-surefire-plugin</artifactId> -->
+			<!-- <version>2.20.1</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>failsafe-integration-tests</id> -->
+			<!-- <phase>integration-test</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>verify</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- <configuration> -->
+			<!-- <systemPropertyVariables> -->
+			<!-- <propertyName>propertyValue</propertyName> -->
+			<!-- <buildDirectory>${project.build.directory}</buildDirectory> -->
+			<!-- </systemPropertyVariables> -->
+			<!-- <argLine>-javaagent:${project.build.directory}/byte-chameleon-1.0.0.jar</argLine> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-failsafe-plugin</artifactId> -->
+			<!-- <version>2.19.1</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <goals> -->
+			<!-- <goal>integration-test</goal> -->
+			<!-- <goal>verify</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- <configuration> -->
+			<!-- <argLine>-javaagent:${project.build.directory}/byte-chameleon-1.0.0.jar==/home/renato/developer/projetos/java/byte-chameleon/src/test/java/br/com/remartins/bytechameleon/byte-chameleon_en.txt</argLine> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-failsafe-plugin</artifactId> -->
+			<!-- <version>2.20.1</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <goals> -->
+			<!-- <goal>integration-test</goal> -->
+			<!-- <goal>verify</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- <configuration> -->
+			<!-- <argLine>-Djava.security.manager -->
+			<!-- -Djava.security.policy=${basedir}/src/test/resources/java.policy</argLine> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
 		</plugins>
+
+
 
 	</build>
 

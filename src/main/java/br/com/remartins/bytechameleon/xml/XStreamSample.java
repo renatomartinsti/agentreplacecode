@@ -16,7 +16,7 @@ public class XStreamSample {
 
 		XStreamSample sample = new XStreamSample();
 
-		sample.readXml();
+		//sample.readXml();
 
 		sample.writeXml();
 
@@ -65,6 +65,7 @@ public class XStreamSample {
 			method.setName("methodProcess" + i);
 			method.setParams("java.lang.String, java.lang.Integer");
 			method.setType("replace");
+			metodos.add(method);
 		}
 
 		return metodos;
