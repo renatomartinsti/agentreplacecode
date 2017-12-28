@@ -1,4 +1,4 @@
-package br.com.remartins.bytechameleon;
+package com.github.remartins.bytechameleon;
 
 import java.io.File;
 import java.lang.instrument.Instrumentation;
@@ -7,11 +7,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.github.remartins.bytechameleon.parse.xml.ByteChameleon;
+import com.github.remartins.bytechameleon.parse.xml.Clazz;
+import com.github.remartins.bytechameleon.parse.xml.Method;
 import com.thoughtworks.xstream.XStream;
-
-import br.com.remartins.bytechameleon.xml.ByteChameleon;
-import br.com.remartins.bytechameleon.xml.Clazz;
-import br.com.remartins.bytechameleon.xml.Method;
 
 /**
  * 

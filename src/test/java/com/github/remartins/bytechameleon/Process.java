@@ -1,4 +1,4 @@
-package br.com.remartins.bytechameleon;
+package com.github.remartins.bytechameleon;
 
 /**
  * 
@@ -10,6 +10,10 @@ public class Process {
 
 	public String process(String value) {
 		return "Message without Instrumentation: " + value;
+	}
+	
+	public int sum() {
+		return 2 + 2;
 	}
 
 }

@@ -1,5 +1,5 @@
 
-package br.com.remartins.bytechameleon;
+package com.github.remartins.bytechameleon;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -12,9 +12,9 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import br.com.remartins.bytechameleon.xml.ByteChameleon;
-import br.com.remartins.bytechameleon.xml.Clazz;
-import br.com.remartins.bytechameleon.xml.Method;
+import com.github.remartins.bytechameleon.parse.xml.ByteChameleon;
+import com.github.remartins.bytechameleon.parse.xml.Clazz;
+import com.github.remartins.bytechameleon.parse.xml.Method;
 
 import javassist.ClassPool;
 import javassist.CtClass;

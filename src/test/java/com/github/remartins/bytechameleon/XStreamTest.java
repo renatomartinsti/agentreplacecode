@@ -1,4 +1,4 @@
-package br.com.remartins.bytechameleon;
+package com.github.remartins.bytechameleon;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,11 +6,10 @@ import java.io.File;
 
 import org.junit.Test;
 
+import com.github.remartins.bytechameleon.parse.xml.ByteChameleon;
+import com.github.remartins.bytechameleon.parse.xml.Clazz;
+import com.github.remartins.bytechameleon.parse.xml.Method;
 import com.thoughtworks.xstream.XStream;
-
-import br.com.remartins.bytechameleon.xml.ByteChameleon;
-import br.com.remartins.bytechameleon.xml.Clazz;
-import br.com.remartins.bytechameleon.xml.Method;
 
 public class XStreamTest {
 
@@ -26,9 +25,10 @@ public class XStreamTest {
 		ByteChameleon byteChameleon = (ByteChameleon) xStream
 				.fromXML(new File(AgentTest.class.getResource("/byte-chameleon.xml").getPath()));
 		
-		String[] result = new String[3];
-		result[1] = "br.com.remartins.bytechameleon.Process";
+		String[] result = new String[4];
+		result[1] = "com.github.remartins.bytechameleon.Process";
 		result[2] = "- replace : process";
+		result[3] = "- replace : sum";
 		
 		
 		String[] real = byteChameleon.toString().split("\n");

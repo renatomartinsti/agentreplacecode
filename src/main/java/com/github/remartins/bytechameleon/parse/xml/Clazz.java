@@ -1,5 +1,5 @@
 
-package br.com.remartins.bytechameleon.xml;
+package com.github.remartins.bytechameleon.parse.xml;
 
 import java.util.List;
 

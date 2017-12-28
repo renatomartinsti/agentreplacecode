@@ -1,4 +1,4 @@
-package br.com.remartins.bytechameleon.xml;
+package com.github.remartins.bytechameleon.parse.xml;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;

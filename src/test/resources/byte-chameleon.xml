@@ -1,14 +1,18 @@
 <byte-chameleon>
-  <classes>
-    <class>
-      <name>br.com.remartins.bytechameleon.Process</name>
-      <methods>
-        <method type="replace">
-          <name>process</name>
-          <params>java.lang.String</params>
-          <code>return "Wow !!! Message with Instrumentation: " + $1;</code>
-        </method>
-      </methods>
-    </class>   
-  </classes>	
+	<classes>
+		<class>
+			<name>com.github.remartins.bytechameleon.Process</name>
+			<methods>
+				<method type="replace">
+					<name>process</name>
+					<params>java.lang.String</params>
+					<code>return "Wow !!! Message with Instrumentation: " + $1;</code>
+				</method>
+				<method type="replace">
+					<name>sum</name>
+					<code>return 3 + 3;</code>
+				</method>
+			</methods>
+		</class>
+	</classes>
 </byte-chameleon>  
