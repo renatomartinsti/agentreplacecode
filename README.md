@@ -1,7 +1,7 @@
 Byte Chameleon 
 [![Build Status](https://travis-ci.org/renatomartinsti/byte-chameleon.svg?branch=master)](https://travis-ci.org/renatomartinsti/byte-chameleon) 
 [![Quality Gate](https://sonarcloud.io/api/badges/gate?key=br.com.remartins:byte-chameleon)](https://sonarcloud.io/dashboard/index/br.com.remartins:byte-chameleon) 
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/remartins/byte-chameleon/releases/tag/1.0.0)
+[![GitHub release](https://img.shields.io/badge/release-1.0.0-blue.svg)](https://github.com/remartins/byte-chameleon/releases/tag/1.0.0)
 ============
 
 JavaAgent Replace Methods with Javassist
