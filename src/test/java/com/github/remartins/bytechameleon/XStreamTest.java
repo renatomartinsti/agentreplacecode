@@ -25,10 +25,12 @@ public class XStreamTest {
 		ByteChameleon byteChameleon = (ByteChameleon) xStream
 				.fromXML(new File(AgentTest.class.getResource("/byte-chameleon.xml").getPath()));
 		
-		String[] result = new String[4];
+		String[] result = new String[6];
 		result[1] = "com.github.remartins.bytechameleon.Process";
 		result[2] = "- replace : process";
 		result[3] = "- replace : sum";
+		result[4] = "- before : sum";
+		result[5] = "- after : process";
 		
 		
 		String[] real = byteChameleon.toString().split("\n");

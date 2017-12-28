@@ -12,6 +12,14 @@
 					<name>sum</name>
 					<code>return 3 + 3;</code>
 				</method>
+				<method type="before">
+					<name>sum</name>
+					<code>System.out.println("Call before !!!");</code>
+				</method>
+				<method type="after">
+					<name>process</name>
+					<code>System.out.println("Call after !!!");</code>
+				</method>
 			</methods>
 		</class>
 	</classes>
