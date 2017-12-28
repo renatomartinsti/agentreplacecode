@@ -3,6 +3,12 @@ package br.com.remartins.bytechameleon.xml;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
+/**
+ * 
+ * @author Renato Martins
+ * @since 10/2017
+ *
+ */
 @XStreamAlias("method")
 public class Method {
 
@@ -48,9 +54,9 @@ public class Method {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(getName());
-		sb.append(" : ");
 		sb.append(getType());
+		sb.append(" : ");
+		sb.append(getName());
 		return sb.toString();
 	}
 

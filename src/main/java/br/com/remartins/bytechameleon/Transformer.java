@@ -49,8 +49,6 @@ public class Transformer implements ClassFileTransformer {
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
-		
-		
 		String classNameFinal = className.replace('/', '.');
 		byte[] retorno = classfileBuffer;
 		
@@ -74,9 +72,6 @@ public class Transformer implements ClassFileTransformer {
 	private byte[] instrumentalize(ClassPool cp, String classNameFinal, byte[] retorno, Clazz classe) {
 		try {
 			CtClass cc = cp.get(classNameFinal);
-			if (cc.isFrozen()) {
-				cc.defrost();
-			}
 			CtMethod ctMethod = null;
 
 			for (Method metodo : classe.getMethods()) {
@@ -112,7 +107,6 @@ public class Transformer implements ClassFileTransformer {
 	}
 
 	private CtMethod getMethodWithParams(ClassPool cp, CtClass cc, Method metodo) throws NotFoundException {
-		CtMethod m;
 		List<CtClass> listCtClass = new ArrayList<CtClass>();
 
 		/** create a array with params like get method form reflection **/
@@ -123,8 +117,7 @@ public class Transformer implements ClassFileTransformer {
 		CtClass[] arrays = new CtClass[listCtClass.size()];
 		listCtClass.toArray(arrays);
 
-		m = cc.getDeclaredMethod(metodo.getName(), arrays);
-		return m;
+		return cc.getDeclaredMethod(metodo.getName(), arrays);
 	}
 
 }

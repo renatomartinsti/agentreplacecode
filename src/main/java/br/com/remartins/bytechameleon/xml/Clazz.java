@@ -6,6 +6,12 @@ import java.util.List;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+/**
+ * 
+ * @author Renato Martins
+ * @since 10/2017
+ *
+ */
 @XStreamAlias("class")
 public class Clazz {
 

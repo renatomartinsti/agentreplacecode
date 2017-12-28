@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import com.ea.agentloader.AgentLoader;
 
+/**
+ * 
+ * @author Renato Martins
+ * @since 12/2017
+ *
+ */
 public class AgentTest {
 
 	@Test

@@ -4,6 +4,13 @@ import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+
+/**
+ * 
+ * @author Renato Martins
+ * @since 10/2017
+ *
+ */
 @XStreamAlias("byte-chameleon")
 public class ByteChameleon {
 
@@ -26,7 +33,7 @@ public class ByteChameleon {
 			sb.append(classe.getName());
 			sb.append("\n");
 			for (Method metodo : classe.getMethods()) {
-				sb.append("  ").append(metodo).append("\n");	
+				sb.append("- ").append(metodo).append("\n");	
 			}
 		}
 		
