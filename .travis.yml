@@ -16,4 +16,4 @@ jdk:
   - oraclejdk8
 
 script: 
-  - mvn clean package sonar:sonar
+  - mvn clean install org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
