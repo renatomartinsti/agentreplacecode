@@ -46,4 +46,4 @@ where <b>agent.xml</b> is
 </byte-chameleon>   
 ```
 
-where <code> is described as javaassist.
+where tag code is described like javaassist.
