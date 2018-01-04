@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.remartins</groupId>
 	<artifactId>byte-chameleon</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>byte-chameleon</name>
@@ -35,7 +35,7 @@
 		<connection>scm:git:https://github.com/remartins/byte-chameleon.git</connection>
 		<developerConnection>scm:git:https://github.com/remartins/byte-chameleon.git </developerConnection>
 		<url>https://github.com/remartins/byte-chameleon.git</url>
-	  <tag>byte-chameleon-1.0.1</tag>
+	  <tag>scm:git:https://github.com/remartins/byte-chameleon.git</tag>
   </scm>
 
 
