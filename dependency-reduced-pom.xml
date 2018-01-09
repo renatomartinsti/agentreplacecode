@@ -10,7 +10,7 @@
   <groupId>br.com.remartins</groupId>
   <artifactId>byte-chameleon</artifactId>
   <name>byte-chameleon</name>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <description>JavaAgent for replace, add before or after methods with Javassist.</description>
   <url>https://github.com/remartins/byte-chameleon</url>
   <licenses>
@@ -23,7 +23,7 @@
   <scm>
     <connection>scm:git:https://github.com/remartins/byte-chameleon.git</connection>
     <developerConnection>scm:git:https://github.com/remartins/byte-chameleon.git</developerConnection>
-    <tag>byte-chameleon-1.0.1</tag>
+    <tag>byte-chameleon-1.0.2</tag>
     <url>https://github.com/remartins/byte-chameleon.git</url>
   </scm>
   <build>
