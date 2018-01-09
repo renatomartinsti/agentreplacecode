@@ -5,7 +5,7 @@ jdk:
 
 addons:
   sonarcloud:
-    organization: "renatomartinsti-github" # the key of the org you chose at step #3
+    organization: "remartins-github" # the key of the org you chose at step #3
     token:
       secure: ${SONAR_TOKEN}
 script:
