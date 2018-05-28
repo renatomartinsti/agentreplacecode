@@ -1,6 +1,6 @@
 Byte Chameleon [![Build Status](https://travis-ci.org/remartins/byte-chameleon.svg?branch=master)](https://travis-ci.org/remartins/byte-chameleon) 
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=br.com.remartins%3Abyte-chameleon&metric=alert_status)](https://sonarcloud.io/api/project_badges/measure?project=br.com.remartins%3Abyte-chameleon&metric=alert_status)
-[![GitHub release](https://img.shields.io/badge/release-1.0.0-blue.svg)](https://github.com/remartins/byte-chameleon/releases/tag/1.0.0)
+[![GitHub release](https://img.shields.io/badge/release-1.0.2-blue.svg)](https://github.com/remartins/byte-chameleon/releases/tag/1.0.2)
 [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://github.com/remartins/byte-chameleon/blob/master/LICENSE)
 ============
 
